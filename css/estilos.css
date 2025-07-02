@@ -1,0 +1,1360 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffff;
+    line-height: 1.6;
+    color: #333; /* Color de texto base */
+}
+
+/* Header (Encabezado de la pagina)*/
+header {
+    background-color: #ffff;
+    padding: 20px 50px; /* Ajustado el padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-texto {
+    display: flex;
+    align-items: center;
+}
+
+.logo-texto img {
+    height: 50px; /* Ajustado el tamaño del logo */
+    width: auto;
+    margin-right: 10px;
+}
+
+.logo-texto div h1 {
+    font-size: 1.6rem; /* Ajustado el tamaño de la fuente */
+    color: #0d2533;
+    margin: 0;
+}
+
+.logo-texto div p {
+    font-size: 0.9rem; /* Ajustado el tamaño de la fuente */
+    color: #3480ae;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+nav ul li {
+    margin-left: 30px; /* Ajustado el espaciado */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem; /* Aumentado el padding */
+    transition: all 0.3s ease; /* Transición suave */
+    border-radius: 5px;
+}
+
+nav ul li a:hover,
+nav ul li a.current-page {
+    background-color: #f0f0f0;
+    color: #3480ae;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Burger menu icon (for responsiveness) */
+.menu-icon {
+    display: none; /* Hidden by default for desktop */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-icon span {
+    height: 3px;
+    width: 25px;
+    background-color: #0d2533;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Buttons general styles */
+.btn {
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #f5ad27;
+    color: #0d2533;
+}
+
+.btn-primary:hover {
+    background-color: #e09b1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: #0d2533;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #244b63;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hero Sections */
+.hero-inicio {
+    background: linear-gradient(180deg, #0d2533 41.83%, #3480ae 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 50px;
+    gap: 40px;
+    color: #fff;
+    min-height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-admision {
+    background: linear-gradient(90deg, #3480ae 0%, #0d2533 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 50px;
+    gap: 40px;
+    color: #fff;
+    min-height: 450px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-content, .hero-admision-content {
+    flex: 1;
+    text-align: left;
+    max-width: 600px;
+}
+
+.hero-content h2, .hero-admision-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    color: #fff;
+}
+
+.hero-admision-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.hero-image, .hero-admision-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Carrusel de Admisión (manual implementation) */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 350px; /* Altura fija para el carrusel */
+    overflow: hidden; /* ¡Clave para que no se desborden las imágenes! */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+    /* No poner width: 300% aquí si el JS calcula el transform. */
+    /* El ancho se ajustará dinámicamente con el flex y el min-width de los slides. */
+}
+
+.slide {
+    min-width: 100%; /* Cada slide siempre ocupa el 100% del ancho del .slider-container */
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0; /* ¡IMPORTANTE! Evita que las imágenes se encojan y mantiene su ancho al 100% */
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    z-index: 5; /* Asegura que las flechas estén por encima del slider */
+}
+
+.slider-nav:hover {
+    opacity: 1;
+}
+
+.prev-slide {
+    left: 10px;
+}
+
+.next-slide {
+    right: 10px;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5; /* Asegura que los dots estén por encima del slider */
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: white;
+}
+
+
+/* Programas Académicos Section */
+.programas-academicos {
+    padding: 80px 50px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.programas-academicos h2 {
+    font-size: 2.8rem;
+    color: #0d2533;
+    margin-bottom: 50px;
+}
+
+.grid-programas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-programa {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-programa:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-programa img {
+    width: 100%;
+    max-width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.card-programa h3 {
+    font-size: 1.8rem;
+    color: #3480ae;
+    margin-bottom: 10px;
+}
+
+.card-programa p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Equipo Docente Section */
+.equipo-docente {
+    background: linear-gradient(180deg, #3480ae 0%, #0d2533 100%);
+    padding: 80px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    color: #fff;
+}
+
+.equipo-content {
+    flex: 1;
+    max-width: 500px;
+}
+
+.equipo-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.equipo-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.grid-docentes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    flex: 1;
+    max-width: 700px;
+}
+
+.grid-docentes img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.grid-docentes img:hover {
+    transform: scale(1.05);
+}
+
+/* Nuestra Misión es tu satisfacción (from nosotros.html, reused) */
+.Nuestra-Satisfaccion {
+    background: linear-gradient(90deg, #337DAA 0%, #0d2533 100%);
+    padding: 100px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.contenido-Satisfaccion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 60px;
+}
+
+.imagen-Satisfaccion {
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.imagen-Satisfaccion img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.imagen-Satisfaccion img:hover {
+    transform: scale(1.05);
+}
+
+.texto-Satisfaccion {
+    color: #ffff;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.texto-Satisfaccion h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.texto-Satisfaccion p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.botones-Satisfaccion {
+    display: flex;
+    gap: 20px;
+}
+
+.boton-primario,
+.boton-secundario {
+    padding: 18px 35px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.boton-primario {
+    background-color: #f5ad27;
+    color: #0d2533;
+}
+
+.boton-primario:hover {
+    background-color: #e09b1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boton-secundario {
+    background-color: #000;
+    color: #ffff;
+}
+
+.boton-secundario:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Noticias y Eventos Section */
+.noticias-eventos {
+    background-color: #f9f9f9;
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.noticias-eventos h2 {
+    font-size: 2.8rem;
+    color: #0d2533;
+    margin-bottom: 50px;
+}
+
+.grid-noticias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-noticia {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.card-noticia:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-noticia img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.noticia-texto {
+    padding: 25px;
+}
+
+.noticia-texto h3 {
+    font-size: 1.7rem;
+    color: #3480ae;
+    margin-bottom: 10px;
+}
+
+.noticia-texto p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.noticia-texto .leer-mas {
+    color: #f5ad27;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.noticia-texto .leer-mas:hover {
+    color: #e09b1a;
+}
+
+
+/* Formulario de Matrícula Section */
+.formulario-matricula {
+    padding: 80px 50px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.formulario-matricula h2 {
+    font-size: 2.8rem;
+    color: #0d2533;
+    margin-bottom: 15px;
+}
+
+.formulario-matricula p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+.formulario-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-image {
+    flex-shrink: 0;
+    width: 500px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.formulario-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+.formulario-content form {
+    flex-grow: 1;
+    text-align: left;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #0d2533;
+    font-size: 1.1rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="tel"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3480ae;
+    box-shadow: 0 0 0 3px rgba(52, 128, 174, 0.2);
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-cancel {
+    background-color: #ccc;
+    color: #555;
+}
+
+.btn-cancel:hover {
+    background-color: #bbb;
+}
+
+.btn-submit {
+    background-color: #f5ad27;
+    color: #0d2533;
+}
+
+.btn-submit:hover {
+    background-color: #e09b1a;
+}
+
+
+/* Opiniones de la Comunidad Section */
+.opiniones-comunidad {
+    background: linear-gradient(180deg, #f5ad27 0%, #ffe2a4 100%);
+    padding: 80px 50px;
+    text-align: center;
+    position: relative; /* Para posicionar flechas y puntos */
+    overflow: hidden; /* ¡Clave para ocultar tarjetas que no están en vista! */
+}
+
+.opiniones-comunidad h2 {
+    font-size: 2.8rem;
+    color: #0d2533;
+    margin-bottom: 50px;
+}
+
+.slider-opiniones {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* justify-content: center; /* Desactivado. El transform lo centra implícitamente */
+    gap: 30px; /* Espacio entre tarjetas */
+    margin: 0 auto; /* Permite que el slider-track se centre con overflow hidden en el padre */
+    max-width: 100%; /* Asegura que el flex no se desborde del padre */
+    width: fit-content; /* Se ajustará al contenido flex */
+    padding-bottom: 20px; /* Espacio para los dots si no están dentro */
+}
+
+.opinion-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 350px; /* Ancho mínimo para las tarjetas */
+    max-width: 380px; /* Ancho máximo para las tarjetas */
+    flex-shrink: 0; /* ¡IMPORTANTE! Evita que las tarjetas se encojan */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.opinion-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.opinion-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #3480ae;
+}
+
+.opinion-card h3 {
+    font-size: 1.5rem;
+    color: #0d2533;
+    margin-bottom: 10px;
+}
+
+.opinion-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.slider-nav-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 10px;
+}
+
+.slider-nav-dots .dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider-nav-dots .dot.active {
+    background-color: #0d2533;
+}
+
+.slider-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(100% - 100px); /* Para que las flechas no toquen los bordes */
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    left: 50px; /* Ajustar posición */
+    right: 50px; /* Ajustar posición */
+    pointer-events: none; /* Para que no bloquee el click en las tarjetas */
+    z-index: 5; /* Asegura que las flechas estén por encima de las tarjetas */
+}
+
+.slider-arrows .arrow {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    pointer-events: auto; /* Habilitar click en las flechas */
+    opacity: 0.8;
+}
+
+.slider-arrows .arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+}
+
+/* ¿Por qué elegirnos? Section */
+.por-que-elegirnos {
+    background-color: #f0f0f0;
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.por-que-elegirnos h2 {
+    font-size: 2.8rem;
+    color: #0d2533;
+    margin-bottom: 20px;
+}
+
+.por-que-elegirnos p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+
+/* Footer Section */
+.footer {
+    background: linear-gradient(180deg, #0D2533 41.83%, #3480AE 100%);
+    color: #ccc;
+    padding: 2.5rem 50px; /* Ajustado el padding */
+}
+
+.footer .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajustado min-width */
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h4 {
+    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer ul li a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer ul li a:hover {
+    color: #fff;
+}
+
+.logo-img-footer {
+    height: 60px; /* Tamaño del logo en el footer */
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.lr-img-footer {
+    height: 80px; /* Tamaño de la imagen lr-mag */
+    width: auto;
+}
+
+.footer h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0;
+}
+
+.footer p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 5px;
+}
+
+.footer .fa {
+    padding: 12px;
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    color: white;
+}
+
+.footer .fa:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+}
+.footer-bottom a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-bottom a:hover {
+    color: #fff;
+}
+
+
+/* Animations */
+.animate-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+}
+
+.animate-button {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+}
+
+.animate-group .animate-button:nth-child(1) { animation-delay: 0.4s; }
+.animate-group .animate-button:nth-child(2) { animation-delay: 0.6s; }
+
+.animate-image {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInScale 1s ease-out forwards;
+}
+
+.animate-heading {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+}
+/* Delay for cards in a grid */
+.grid-programas .animate-card:nth-child(1) { animation-delay: 0.2s; }
+.grid-programas .animate-card:nth-child(2) { animation-delay: 0.4s; }
+.grid-programas .animate-card:nth-child(3) { animation-delay: 0.6s; }
+
+.grid-docentes img:nth-child(1) { animation-delay: 0.2s; }
+.grid-docentes img:nth-child(2) { animation-delay: 0.4s; }
+.grid-docentes img:nth-child(3) { animation-delay: 0.6s; }
+
+.grid-noticias .animate-card:nth-child(1) { animation-delay: 0.2s; }
+.grid-noticias .animate-card:nth-child(2) { animation-delay: 0.4s; }
+
+.animate-form {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 0.2s; /* Delay for the form itself */
+}
+
+.opiniones-comunidad .opinion-card:nth-child(1) { animation-delay: 0.2s; }
+.opiniones-comunidad .opinion-card:nth-child(2) { animation-delay: 0.4s; }
+.opiniones-comunidad .opinion-card:nth-child(3) { animation-delay: 0.6s; }
+
+
+@keyframes fadeInSlideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+/* Media Queries for Responsiveness */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    header {
+        padding: 20px 30px;
+    }
+    nav ul li {
+        margin-left: 20px;
+    }
+    .hero-inicio, .hero-admision {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 30px;
+        min-height: auto;
+    }
+    .hero-content, .hero-admision-content {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+    .hero-content h2, .hero-admision-content h2 {
+        font-size: 2.8rem;
+    }
+    .hero-image, .hero-admision-image {
+        max-width: 80%;
+    }
+    .slider-container {
+        height: 300px;
+    }
+    .programas-academicos, .equipo-docente, .noticias-eventos,
+    .formulario-matricula, .opiniones-comunidad, .por-que-elegirnos {
+        padding: 60px 30px;
+    }
+    .equipo-docente {
+        flex-direction: column;
+        text-align: center;
+    }
+    .grid-docentes {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+        margin-top: 40px;
+    }
+    .Nuestra-Satisfaccion .contenido-Satisfaccion {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    .Nuestra-Satisfaccion .imagen-Satisfaccion {
+        width: 100%;
+        max-width: 500px;
+        height: 280px;
+    }
+    .texto-Satisfaccion h2 {
+        font-size: 2.5rem;
+    }
+    .botones-Satisfaccion {
+        justify-content: center;
+    }
+    .formulario-content {
+        flex-direction: column;
+    }
+    .formulario-image {
+        width: 100%;
+        max-width: 500px;
+        height: 350px;
+        margin-bottom: 30px;
+    }
+    .formulario-content form {
+        max-width: 100%;
+    }
+    .opiniones-comunidad .slider-arrows {
+        width: calc(100% - 60px);
+        left: 30px;
+        right: 30px;
+    }
+    .footer .grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+/* Mobile (<= 767px) */
+@media (max-width: 767px) {
+    header {
+        padding: 15px 20px;
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+        /* justify-content: center; /* Desactivado para que el logo y el menú icon no queden centrados y el logo se mantenga a la izquierda */
+        justify-content: space-between; /* Ajusta esto para que logo y hamburguesa estén en extremos */
+    }
+    .logo-texto {
+        width: auto; /* Permite que el logo ocupe el espacio necesario */
+        /* justify-content: center; */ /* Desactivado */
+        margin-bottom: 0; /* Elimina el margen si el logo y menú están en la misma línea */
+    }
+    nav {
+        display: none; /* Hide navigation by default on small screens */
+        width: 100%;
+        /* MODIFICACIÓN: Añadimos propiedades para que el menú se vea bien cuando está activo */
+        position: absolute;
+        top: 100%; /* Justo debajo del header */
+        left: 0;
+        background-color: #ffff; /* Color de fondo del menú desplegado */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding-bottom: 15px; /* Espacio extra al final del menú */
+    }
+    nav.active {
+        display: block; /* Show navigation when active */
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+    nav ul li {
+        margin-left: 0;
+        width: 100%; /* Para que los enlaces ocupen todo el ancho */
+        text-align: center;
+    }
+    nav ul li a {
+        display: block; /* Hace que el área de clic sea más grande */
+        padding: 10px 0; /* Ajusta el padding para enlaces de menú móvil */
+    }
+    .menu-icon {
+        display: flex; /* Show burger icon */
+        position: static; /* No absolute, para que fluya en el header */
+        /* right: 20px; */ /* Eliminado */
+        /* top: 25px; */ /* Eliminado */
+    }
+
+    .hero-inicio, .hero-admision {
+        padding: 50px 20px;
+    }
+    .hero-content h2, .hero-admision-content h2 {
+        font-size: 2.2rem;
+    }
+    .hero-admision-content p {
+        font-size: 1rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+    .hero-image img {
+        max-width: 90%;
+    }
+    .slider-container {
+        height: 250px;
+    }
+    .programas-academicos, .equipo-docente, .noticias-eventos,
+    .formulario-matricula, .opiniones-comunidad, .por-que-elegirnos {
+        padding: 50px 20px;
+    }
+    .programas-academicos h2, .equipo-docente h2, .noticias-eventos h2,
+    .formulario-matricula h2, .opiniones-comunidad h2, .por-que-elegirnos h2 {
+        font-size: 2.2rem;
+    }
+    .grid-programas, .grid-noticias {
+        grid-template-columns: 1fr;
+    }
+    .Nuestra-Satisfaccion .imagen-Satisfaccion {
+        height: 220px;
+    }
+    .texto-Satisfaccion h2 {
+        font-size: 2.2rem;
+    }
+    .texto-Satisfaccion p {
+        font-size: 1rem;
+    }
+    .formulario-image {
+        height: 280px;
+    }
+    .opiniones-comunidad .slider-arrows {
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+    }
+    .opinion-card {
+        min-width: 280px;
+        max-width: 300px; /* Ajustar el tamaño de la tarjeta para móviles */
+        padding: 20px;
+    }
+    .footer {
+        padding: 2rem 20px;
+    }
+    .footer .grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer .grid > div {
+        margin-bottom: 25px;
+    }
+    .footer .fa {
+        margin: 0 5px;
+    }
+}
+
+/* Specific adjustments for nosotros.html */
+/* seccion Hero */
+.hero-imagen {
+    background: linear-gradient(180deg, #0d2533 41.83%, #3480ae 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.imagen-centro img {
+    width: 850px;
+    height: 350px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.imagen-centro img:hover {
+    transform: scale(1.05);
+}
+
+.acerca-de-nosotros {
+    background-color: #ffff;
+    padding: 60px 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido-acerca {
+    max-width: 800px;
+    margin-bottom: 40px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenido-acerca h2 {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.contenido-acerca p {
+    font-size: 1.1rem;
+    color: #000;
+    line-height: 1.6;
+}
+
+.caracteristicas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caracteristicas {
+    background-color: #ffff;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    transition: transform 0.3s ease;
+    border: 1px solid #000;
+}
+
+.caracteristicas:hover {
+    transform: scale(1.05);
+}
+
+.caracteristicas img {
+    width: 140px;
+    height: 100px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.texto-contenido {
+    text-align: left;
+}
+
+.caracteristicas h3 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.caracteristicas p {
+    font-size: 1rem;
+    color: #000;
+    line-height: 1.5rem;
+}
+
+/*Seccion: Nuestra Filosofia*/
+.Nuestra-Filosofia {
+    background: linear-gradient(180deg, #f5ad27 0%, #ffe2a4 100%);
+    padding: 60px 100px;
+}
+
+.Contenido-Filosofia {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    text-align: left;
+}
+
+.Contenido-Filosofia h2 {
+    font-size: 2.5rem;
+    color: #000;
+}
+
+.Filosofia-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filosofia-card {
+    background-color: #ffff;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 20px;
+    transition: transform 0.3s ease;
+}
+
+.filosofia-card:hover {
+    transform: scale(1.05);
+}
+
+.filosofia-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.texto-filosofia-contenido h3 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.texto-filosofia-contenido p {
+    font-size: 1rem;
+    color: #000;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments for nosotros.html sections */
+@media (max-width: 1024px) {
+    .acerca-de-nosotros, .Nuestra-Filosofia {
+        padding: 60px 30px;
+    }
+    .caracteristicas-grid, .Filosofia-grid {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+    .caracteristicas, .filosofia-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .texto-contenido, .texto-filosofia-contenido {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .acerca-de-nosotros, .Nuestra-Filosofia {
+        padding: 50px 20px;
+    }
+    .hero-imagen {
+        height: 350px;
+    }
+    .imagen-centro img {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+    }
+    .contenido-acerca h2, .Contenido-Filosofia h2 {
+        font-size: 2.2rem;
+    }
+    .caracteristicas img, .filosofia-card img {
+        width: 80px;
+        height: 80px;
+    }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admision IE-7091</title>
+    <link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/script.js"></script>
+</head>
+<body>
+    <!--Header (Encabezado de la pagina)-->
+    <header>
+        <div class="logo-texto">
+            <img src="imagenes/logo.png" alt="logo de la institucion">
+            <div>
+                <h1>IE - 7091</h1>
+                <p>Replubica del Perú</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+               <li class="nav-item"><a class="nav-link fw-bold text-dark" href="index.html">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link fw-bold text-dark" href="admision.html">Admisión</a></li>
+				<li class="nav-item"><a class="nav-link fw-bold text-dark" href="#">Nosotros</a></li>
+            </ul>
+        </nav>
+		<div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="hero-admision">
+        <div class="hero-admision-content">
+            <h2 class="animate-text">Bienvenido a la Matrícula</h2>
+            <p class="animate-text">Inscríbete en nuestros cursos y mejora tus habilidades.</p>
+            <div class="hero-buttons animate-group">
+                <a href="#formulario-matricula" class="btn btn-primary animate-button">Más Información</a>
+                <a href="#formulario-matricula" class="btn btn-secondary animate-button">Ver Común</a>
+            </div>
+        </div>
+        <div class="hero-admision-image animate-image">
+            <div class="slider-container">
+                <div class="slider-track">
+                    <img src="imagenes/banner-admision.png" alt="Estudiantes sonriendo" class="slide">
+                    <img src="imagenes/excelencia.png" alt="Maestro enseñando" class="slide">
+                    <img src="imagenes/ProfesoresF.png" alt="Niños estudiando" class="slide">
+                </div>
+                <button class="slider-nav prev-slide animate-button">&#10094;</button>
+                <button class="slider-nav next-slide animate-button">&#10095;</button>
+                <div class="slider-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="formulario-matricula" id="formulario-matricula">
+        <h2 class="animate-heading">Formulario de Matrícula</h2>
+        <p class="animate-text">Por favor, completa todos los campos requeridos</p>
+        <div class="formulario-content">
+            <div class="formulario-image animate-image">
+                <img src="imagenes/estudiante-formulario.jpg" alt="Estudiante en aula">
+            </div>
+            <form class="animate-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Estudiante</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo">
+                </div>
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fechas de Nacimiento</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono de Contacto</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+51 987 654 321">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="form-buttons animate-group">
+                    <button type="button" class="btn btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn btn-submit">Enviar Solicitud</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="opiniones-comunidad">
+        <h2 class="animate-heading">Opiniones de la Comunidad</h2>
+        <div class="slider-opiniones">
+            <div class="opinion-card animate-card">
+                <img src="imagenes/carla.jpg" alt="Carla Paredes">
+                <h3>Carla Paredes</h3>
+                <p>"Estoy muy contenta con el programa. Los coordinadores siempre están pendientes y hay buena comunicación."</p>
+            </div>
+            <div class="opinion-card animate-card">
+                <img src="imagenes/manuel.jpg" alt="Manuel Ordoñez">
+                <h3>Manuel Ordoñez</h3>
+                <p>"Es un colegio que no solo enseña, también educa en valores. Como madre me da mucha tranquilidad."</p>
+            </div>
+            <div class="opinion-card animate-card">
+                <img src="imagenes/daniel.jpg" alt="Daniel Lazo">
+                <h3>Daniel Lazo</h3>
+                <p>"Desde que mi hijo ingresó, he notado un cambio positivo. Le gusta estudiar y se siente parte del colegio."</p>
+            </div>
+        </div>
+        <div class="slider-nav-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <div class="slider-arrows">
+            <button class="arrow prev-opinion animate-button">&#10094;</button>
+            <button class="arrow next-opinion animate-button">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="por-que-elegirnos">
+        <h2 class="animate-heading">¿Por qué elegirnos?</h2>
+        <p class="animate-text">Conoce las ventajas de estudiar con nosotros.</p>
+        <a href="nosotros.html" class="btn btn-primary animate-button">Más información</a>
+    </section>
+
+    <footer class="footer">
+        <div class="grid">
+            <div>
+                <image src="imagenes/logo.png" alt="Logo" class="logo-img-footer">
+                <br>
+                <h1>IE - 7091</h1>
+                <p>República del Perú</p>
+                <br>
+                <p>Educamos con compromiso, guiamos con vocación.</p>
+                <br>
+                <p>
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                </p>
+            </div>
+            <div>
+                <h4>Acerca</h4>
+                <ul>
+                    <li><a href="admision.html">Admisión</a></li>
+                    <li><a href="#">Destacados</a></li>
+                    <li><a href="#">Alianza</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Comunidad</h4>
+                <ul>
+                    <li><a href="#">Eventos</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Noticias</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Socials</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <br>
+                    <br>
+                    <img src="imagenes/lr-mag.png" alt="Lr" class="lr-img-footer">
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <br>
+            © 2026 Matrícula Escolar. | Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Términos</a>
+        </div>
+    </footer>
+
+   
+</body>
+</html>
